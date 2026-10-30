@@ -1,0 +1,78 @@
+General:
+  seed: 2021
+  accelerator: gpu
+  devices: [0]
+  precision: 32
+  epochs: 50
+  patience: 20
+  min_delta: 0.001
+  grad_acc: 2
+  gradient_clip_val: 0.0
+
+folds: [0]
+output_dir: /home/local-admin/Documents/projects/TransMIL_dual_two/logs/joint_task2_case5_foreground_compare_1.0_1.0
+
+Data:
+  dataset_name: PLC_data
+  dual_branch: true
+  ablation_case: 5
+  data_shuffle: false
+  l2_normalize_features: false
+  max_patches_per_slide: 0
+  max_patches_per_tm_slide: 0
+  data_dir: /media/local-admin/Crucial X92/MAIA/MIL_10/features_UNI2h/pt_files/
+  CCA_1_stain_norm: true
+  CCA_1_stain_norm_feature_dir: /media/local-admin/Crucial X92/MAIA/MIL_10/CCA_1/features_stain_norm_all/pt_files
+  label_dir: /home/local-admin/Documents/projects/TransMIL/dataset_csv_consistent/task_2_CCA_vs_HCC_vs_TM/
+  fold: 0
+  nfold: 10
+  use_precomputed_attention_targets: true
+  precomputed_attention_root: /home/local-admin/Documents/projects/TransMIL_visualisation/task_1
+  use_segmentation_annotations: false
+  use_cluster_attention_targets: false
+  attn_code: [1, 1, 1, 1]
+  train_dataloader:
+    batch_size: 1
+    num_workers: 4
+  test_dataloader:
+    batch_size: 1
+    num_workers: 4
+
+Model:
+  complementary_loss_type: anti-correlation  ### original, foreground, anti-correlation
+  foreground_comp_type: product  # Used in foreground mode; anti-correlation selects anticorrelation.
+  foreground_comp_rho_target: -0.3
+  foreground_threshold: 0.4
+  background_attention_threshold: 0.05
+  background_loss_weight: 10.0
+  complementary_mode: symmetric #### symmetric, asymmetric
+  comp_grad_weight_0: 1.0
+  comp_grad_weight_1: 1.0
+  use_gradient_checkpointing: false
+  gradient_checkpointing_min_patches: 30000
+  loss_weights:
+    single_cls: 1.0
+    dual_cls: 1.0
+    single_attn: 0.5
+    dual_attn: 0.5
+    complement: 2.5
+    union: 3.0 ###2.0
+  union:
+    # max preserves relative positive scores and scales each WSI into [0,1].
+    # Alternatives: minmax, sum (unit-sum patch probabilities before union).
+    normalization: max
+    # Penalize only max(mean_layer_KL - margin, 0); e.g. 0.01 for tolerance.
+    margin: 0.01
+    detach_single_target: false
+    # Zero enables alignment immediately; increase for classification warm-up.
+    start_epoch: 0
+
+Optimizer:
+  single_lr: 0.0002
+  dual_lr: 0.0001
+  weight_decay: 0.00001
+
+Initialization:
+  # Optional existing task-2/case-5 checkpoint paths; {fold} is supported.
+  single_checkpoint: null
+  dual_checkpoint: null
