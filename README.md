@@ -36,5 +36,3 @@ Export the trained components for separate inference:
 ```bash
 python export_models.py /path/to/joint.ckpt --output_dir /path/to/export
 ```
-
-For detailed loss definitions, configuration options and tests, see [README.md](README.md).
