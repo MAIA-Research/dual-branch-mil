@@ -26,4 +26,4 @@ python train.py --config config.yaml --fold 0
 # Train all folds listed in the configuration.
 python train.py --config config.yaml
 ```
-
+For model evaluation and attention heatmap visualization, please refer to the [dual_visualisation repository](https://github.com/MAIA-Research/dual_visualisation).
