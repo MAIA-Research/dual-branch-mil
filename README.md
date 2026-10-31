@@ -27,12 +27,3 @@ python train.py --config config.yaml --fold 0
 python train.py --config config.yaml
 ```
 
-## Outputs
-
-Each fold saves training histories, validation predictions and metrics, plus checkpoints selected by the best joint total loss, best three-class classification loss, best three-class total loss, and the last epoch. Early stopping monitors the three-class validation classification loss.
-
-Export the trained components for separate inference:
-
-```bash
-python export_models.py /path/to/joint.ckpt --output_dir /path/to/export
-```
