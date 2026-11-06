@@ -20,14 +20,14 @@ Data:
   l2_normalize_features: false
   max_patches_per_slide: 0
   max_patches_per_tm_slide: 0
-  data_dir: /media/local-admin/Crucial X92/MAIA/MIL_10/features_UNI2h/pt_files/
+  data_dir: ./features_UNI2h/pt_files/
   CCA_1_stain_norm: true
-  CCA_1_stain_norm_feature_dir: /media/local-admin/Crucial X92/MAIA/MIL_10/CCA_1/features_stain_norm_all/pt_files
-  label_dir: /home/local-admin/Documents/projects/TransMIL/dataset_csv_consistent/task_2_CCA_vs_HCC_vs_TM/
+  CCA_1_stain_norm_feature_dir: ./CCA_1/features_stain_norm_all/pt_files
+  label_dir: ./dataset_csv_consistent/task_2_CCA_vs_HCC_vs_TM/
   fold: 0
   nfold: 10
   use_precomputed_attention_targets: true
-  precomputed_attention_root: /home/local-admin/Documents/projects/TransMIL_visualisation/task_1
+  precomputed_attention_root: ./TransMIL_visualisation/task_1
   use_segmentation_annotations: false
   use_cluster_attention_targets: false
   attn_code: [1, 1, 1, 1]
