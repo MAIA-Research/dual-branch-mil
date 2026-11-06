@@ -10,7 +10,7 @@ General:
   gradient_clip_val: 0.0
 
 folds: [0]
-output_dir: /home/local-admin/Documents/projects/TransMIL_dual_two/logs/joint_task2_case5_foreground_compare_1.0_1.0
+output_dir: ./TransMIL_dual_two/logs/joint_task2_case5_foreground_compare_1.0_1.0
 
 Data:
   dataset_name: PLC_data
